@@ -1,2 +1,2 @@
 $ws = New-Object -ComObject Wscript.Shell
-$ws.Popup("fuck pyton1", 0, "Тестовое уведомление", 64+4096)
+$ws.Popup("fuck pyton!", 0, "Тестовое уведомление", 64+4096)
