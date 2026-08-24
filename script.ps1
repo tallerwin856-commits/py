@@ -1,5 +1,5 @@
-# Формируем команду для нового окна
-$Command = @'
+# 1. Формируем команду для нового окна
+$InnerScript = @'
 Clear-Host
 $Art = @"
                                                                           
@@ -52,8 +52,12 @@ $Art = @"
  =+++*******####*++==---------------------------------------++******#####
 "@
 Write-Host $Art -ForegroundColor Cyan
-Read-Host "Нажмите Enter чтобы закрыть"
+Read-Host "Нажмите Enter чтобы закрыть окно"
 '@
 
-# Запускаем новое окно PowerShell с этой командой
-Start-Process powershell -ArgumentList "-NoExit", "-Command", $Command
+# 2. Кодируем скрипт в Base64 (это защищает от ошибок парсинга спецсимволов)
+$Bytes = [System.Text.Encoding]::Unicode.GetBytes($InnerScript)
+$EncodedCommand = [Convert]::ToBase64String($Bytes)
+
+# 3. Запускаем новое окно с закодированной командой
+Start-Process powershell -ArgumentList "-NoExit", "-EncodedCommand", $EncodedCommand
